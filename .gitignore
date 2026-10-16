@@ -1,0 +1,11 @@
+.env
+storage/logs/*
+!storage/logs/.gitkeep
+storage/uploads/*
+!storage/uploads/.gitkeep
+.vscode/
+.idea/
+vendor/
+*.log
+Thumbs.db
+.DS_Store
