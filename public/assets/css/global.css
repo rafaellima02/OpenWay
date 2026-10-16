@@ -1,0 +1,82 @@
+/* OpenWay - estilos globais (cores, tipografia e utilidades) */
+
+:root {
+    --azul: #0b6bde;
+    --azul-hover: #0958b8;
+    --azul-escuro: #0a2a5e;
+    --azul-texto: #2a5490;
+    --azul-claro: #e3effc;
+    --azul-borda: #c4dcf6;
+    --erro: #b3261e;
+    --raio: 18px;
+    --fonte: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--fonte);
+    line-height: 1.5;
+    color: var(--azul-escuro);
+    background: linear-gradient(160deg, #e8f3ff 0%, #d6e9fc 100%);
+}
+
+.pagina {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px 16px;
+}
+
+svg {
+    display: block;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* Visível só para leitores de tela */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+:focus-visible {
+    outline: 3px solid var(--azul-escuro);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}

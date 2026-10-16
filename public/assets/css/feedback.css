@@ -1,0 +1,637 @@
+/* OpenWay - tela "Cadastro do feedback" (6 etapas) */
+
+/* ---------- Cartão ---------- */
+.cartao {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    max-width: 580px;
+    padding: 24px 36px 32px;
+    background: linear-gradient(180deg, #ffffff 0%, #f2f8ff 100%);
+    border-radius: var(--raio);
+    box-shadow: 0 12px 36px rgba(11, 107, 222, 0.14), 0 2px 6px rgba(11, 107, 222, 0.08);
+}
+
+/* Círculos decorativos nos cantos de baixo */
+.cartao::before,
+.cartao::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.cartao::before {
+    width: 120px;
+    height: 120px;
+    left: -44px;
+    bottom: -60px;
+    background: #d3e8fc;
+}
+
+.cartao::after {
+    width: 210px;
+    height: 210px;
+    right: -70px;
+    bottom: -96px;
+    background: #bddcfb;
+}
+
+/* ---------- Topo: marca, progresso e fechar ---------- */
+.topo {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+.marca svg {
+    width: 26px;
+    height: 26px;
+}
+
+.progresso {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.progresso__texto {
+    min-width: 2.2em;
+    text-align: right;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--azul-texto);
+}
+
+.progresso__barra {
+    width: 120px;
+    height: 6px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: #cfe2f8;
+}
+
+.progresso__preenchido {
+    display: block;
+    width: 16.66%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--azul);
+    transition: width 0.35s ease;
+}
+
+.fechar {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: -8px -10px -8px 0;
+    border-radius: 50%;
+    color: var(--azul-escuro);
+}
+
+.fechar:hover {
+    background: rgba(11, 107, 222, 0.1);
+}
+
+.fechar svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ---------- Etapas ---------- */
+.etapa {
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    animation: entrar 0.35s ease both;
+}
+
+@keyframes entrar {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.etapa__corpo {
+    position: relative;
+    flex: 1;
+}
+
+.etapa__acoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 24px;
+}
+
+.titulo {
+    margin: 0 0 10px;
+    font-size: clamp(1.8rem, 5.2vw, 2.3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--azul-escuro);
+}
+
+.titulo span {
+    display: block;
+    color: var(--azul);
+}
+
+/* O foco no título serve só para anunciar a nova etapa */
+.titulo:focus {
+    outline: none;
+}
+
+.lead {
+    max-width: 34ch;
+    margin: 0 0 18px;
+    font-size: 0.98rem;
+    color: var(--azul-texto);
+}
+
+.lead--larga {
+    max-width: none;
+}
+
+.erro {
+    margin: 10px 0 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--erro);
+}
+
+/* ---------- Botões ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 360px;
+    min-height: 50px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--azul);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(11, 107, 222, 0.28);
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    background: var(--azul-hover);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.65;
+    cursor: progress;
+}
+
+.btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn--largo {
+    max-width: none;
+}
+
+.btn-link {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 0;
+    background: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--azul);
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Etapa 1: nota ---------- */
+.etapa--rota .etapa__texto {
+    position: relative;
+    z-index: 1;
+    max-width: 58%;
+}
+
+.mapa-deco {
+    position: absolute;
+    top: -70px;
+    right: -36px;
+    z-index: 0;
+    width: 48%;
+    max-width: 260px;
+    height: auto;
+    pointer-events: none;
+}
+
+.rota-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 22px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(11, 107, 222, 0.12);
+}
+
+.rota-card:hover {
+    box-shadow: 0 6px 18px rgba(11, 107, 222, 0.22);
+}
+
+.rota-card > svg:first-child {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    color: var(--azul);
+}
+
+.rota-card__rotulo,
+.rota-card__trajeto {
+    display: block;
+}
+
+.rota-card__rotulo {
+    font-size: 0.72rem;
+    color: var(--azul-texto);
+}
+
+.rota-card__trajeto {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--azul-escuro);
+}
+
+.rota-card .chevron {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin-left: auto;
+    color: var(--azul-texto);
+}
+
+.avaliacao {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.avaliacao legend {
+    padding: 0;
+    margin-bottom: 6px;
+    font-size: 0.98rem;
+    font-weight: 700;
+}
+
+/* As estrelas ficam em ordem inversa no HTML (5..1) para o preenchimento
+   "da esquerda até a escolhida" funcionar só com CSS. */
+.estrelas {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+
+.estrelas label {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+}
+
+.estrelas svg {
+    width: 34px;
+    height: 34px;
+    fill: transparent;
+    stroke: var(--azul);
+    stroke-width: 1.6;
+    transition: fill 0.15s ease;
+}
+
+.estrelas input:checked ~ label svg,
+.estrelas label:hover svg,
+.estrelas label:hover ~ label svg {
+    fill: var(--azul);
+}
+
+.estrelas input:focus-visible + label {
+    outline: 3px solid var(--azul-escuro);
+    outline-offset: 1px;
+    border-radius: 10px;
+}
+
+/* ---------- Etapas 2 e 3: pontos de acessibilidade ---------- */
+.chips-grupo {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+}
+
+.chip {
+    display: block;
+    cursor: pointer;
+}
+
+.chip__corpo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--azul-claro);
+    color: #1f4a85;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover .chip__corpo {
+    background: #d2e5fa;
+}
+
+.chip__icone {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    color: var(--azul);
+}
+
+.chip input:checked + .chip__corpo {
+    background: var(--azul);
+    color: #fff;
+    font-weight: 600;
+}
+
+.chip input:checked + .chip__corpo .chip__icone {
+    color: #fff;
+}
+
+.chip input:focus-visible + .chip__corpo {
+    outline: 3px solid var(--azul-escuro);
+    outline-offset: 3px;
+}
+
+/* Etapa 3: ao marcar, o ícone vira um alerta */
+.chip__icone--alerta {
+    display: none;
+}
+
+.chips-grupo--atencao .chip input:checked + .chip__corpo .chip__icone--normal {
+    display: none;
+}
+
+.chips-grupo--atencao .chip input:checked + .chip__corpo .chip__icone--alerta {
+    display: block;
+}
+
+/* ---------- Etapa 4: detalhes e foto ---------- */
+.campo-texto {
+    position: relative;
+}
+
+.campo-texto textarea {
+    display: block;
+    width: 100%;
+    min-height: 118px;
+    padding: 14px 14px 30px;
+    border: 1.5px solid var(--azul-borda);
+    border-radius: 14px;
+    background: #fff;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    resize: vertical;
+}
+
+.campo-texto textarea::placeholder {
+    color: #5f84b3;
+}
+
+.campo-texto textarea:focus-visible {
+    outline-offset: 0;
+    border-color: var(--azul);
+}
+
+.campo-texto__contador {
+    position: absolute;
+    right: 14px;
+    bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--azul-texto);
+    pointer-events: none;
+}
+
+.foto {
+    margin-top: 14px;
+}
+
+.foto__area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 16px;
+    border: 1.5px dashed #a9cdf3;
+    border-radius: 14px;
+    background: #eaf3fd;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.foto__area:hover {
+    background: #dfecfb;
+}
+
+.foto input:focus-visible + .foto__area {
+    outline: 3px solid var(--azul-escuro);
+    outline-offset: 3px;
+}
+
+.foto__icone svg {
+    width: 26px;
+    height: 26px;
+    color: var(--azul);
+}
+
+.foto__area strong {
+    font-size: 0.92rem;
+    word-break: break-all;
+}
+
+.foto__area small {
+    font-size: 0.75rem;
+    color: var(--azul-texto);
+}
+
+.foto__miniatura {
+    width: 84px;
+    height: 84px;
+    margin-bottom: 6px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.foto__remover {
+    display: block;
+    margin: 4px auto 0;
+}
+
+/* ---------- Etapa 5: confirmação ---------- */
+.etapa--centro .etapa__corpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.etapa--centro .lead {
+    max-width: 30ch;
+}
+
+.selo {
+    width: 124px;
+    height: 124px;
+    margin: 6px 0 14px;
+}
+
+.proxima {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 330px;
+    margin-top: 14px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: var(--azul-claro);
+    text-align: left;
+}
+
+.proxima > svg {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    color: var(--azul);
+}
+
+.proxima p {
+    margin: 0 0 2px;
+    font-size: 0.85rem;
+    color: var(--azul-texto);
+}
+
+.proxima a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.proxima a:hover {
+    text-decoration: underline;
+}
+
+.proxima a svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* ---------- Etapa 6: encerramento ---------- */
+.ilustracao-final {
+    width: 210px;
+    height: auto;
+    margin: 0 auto 18px;
+}
+
+.etapa--final .lead {
+    max-width: none;
+}
+
+/* ---------- Telas pequenas ---------- */
+@media (max-width: 560px) {
+    .cartao {
+        padding: 20px 20px 28px;
+    }
+
+    .progresso__barra {
+        width: 84px;
+    }
+
+    .etapa--rota .etapa__texto {
+        max-width: none;
+    }
+
+    .mapa-deco {
+        width: 62%;
+        opacity: 0.35;
+    }
+
+    .chips {
+        gap: 10px;
+    }
+
+    .chip__corpo {
+        gap: 8px;
+        padding: 6px 12px;
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .chips {
+        grid-template-columns: 1fr;
+    }
+}
