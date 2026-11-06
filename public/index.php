@@ -32,9 +32,13 @@ session_start([
     'cookie_samesite' => 'Lax',
 ]);
 
-$pagina = is_string($_GET['pagina'] ?? null) ? $_GET['pagina'] : 'feedback/cadastro';
+$pagina = is_string($_GET['pagina'] ?? null) ? $_GET['pagina'] : 'home';
 
 switch ($pagina) {
+    case 'home':
+        (new HomeController())->index();
+        break;
+
     case 'feedback/cadastro':
         (new FeedbackController())->cadastro();
         break;
@@ -42,6 +46,10 @@ switch ($pagina) {
     case 'feedback/salvar':
         (new FeedbackController())->salvar();
         break;
+    
+    case 'mapa':
+    (new MapaController())->rota();
+    break;    
 
     default:
         http_response_code(404);
